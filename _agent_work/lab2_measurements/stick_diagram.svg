@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560">
+  <!--
+    Floorplan per user:
+      LEFT  : CLK inverter alone
+      RIGHT : two rows
+              TOP    = INV + NOR  (master | slave)
+              BOTTOM = TGs         (master | slave)
+    Layers: yellow=pdiff, green=ndiff, red=poly, blue=M1, magenta=M2, X=contact
+  -->
+  <defs>
+    <style>
+      .t{font-family:Arial,Helvetica,sans-serif}
+      .m1{stroke:#1a4db8;stroke-width:2.4;fill:none}
+      .m1w{stroke:#1a4db8;stroke-width:5;fill:none}
+      .m2{stroke:#9b2d8a;stroke-width:2.6;fill:none}
+      .pd{stroke:#c9a227;stroke-width:7;fill:none;stroke-linecap:round}
+      .nd{stroke:#2f9e44;stroke-width:7;fill:none;stroke-linecap:round}
+      .poly{stroke:#d62828;stroke-width:3.2;fill:none}
+      .well{stroke:#a67c00;stroke-width:1.1;fill:none;stroke-dasharray:5 3}
+      .sep{stroke:#bbbbbb;stroke-width:1;stroke-dasharray:4 3}
+      .lab{font-size:12px;fill:#333}
+      .pin{font-size:13px;font-weight:700;fill:#1a4db8}
+      .pin2{font-size:13px;font-weight:700;fill:#9b2d8a}
+      .zone{font-size:13px;font-weight:700;fill:#222}
+      .sm{font-size:11px;fill:#555}
+    </style>
+  </defs>
+  <rect width="1000" height="560" fill="#fff"/>
+
+  <!-- title / legend -->
+  <text x="20" y="24" class="t" font-size="16" font-weight="700">DFF Stick Diagram</text>
+  <line x1="20" y1="40" x2="40" y2="40" class="pd"/>
+  <text x="46" y="44" class="t sm">p+</text>
+  <line x1="80" y1="40" x2="100" y2="40" class="nd"/>
+  <text x="106" y="44" class="t sm">n+</text>
+  <line x1="140" y1="40" x2="160" y2="40" class="poly"/>
+  <text x="166" y="44" class="t sm">poly</text>
+  <line x1="210" y1="40" x2="230" y2="40" class="m1"/>
+  <text x="236" y="44" class="t sm">M1</text>
+  <line x1="270" y1="40" x2="290" y2="40" class="m2"/>
+  <text x="296" y="44" class="t sm">M2</text>
+  <text x="340" y="44" class="t sm">? contact</text>
+
+  <!-- zone titles -->
+  <text x="55" y="68" class="t zone">CLK inv</text>
+  <text x="40" y="84" class="t sm">(0.5 µm)</text>
+  <text x="430" y="68" class="t zone">INV + NOR (upper)</text>
+  <text x="430" y="300" class="t zone">Transmission gates (lower)</text>
+  <text x="320" y="68" class="t sm">Master</text>
+  <text x="620" y="68" class="t sm">Slave</text>
+
+  <!-- VDD / VSS on M1 -->
+  <line x1="30" y1="100" x2="970" y2="100" class="m1w"/>
+  <line x1="30" y1="520" x2="970" y2="520" class="m1w"/>
+  <text x="4" y="105" class="t pin">VDD</text>
+  <text x="4" y="525" class="t pin">VSS</text>
+
+  <!-- ========== LEFT: CLK inverter ========== -->
+  <line x1="50" y1="160" x2="130" y2="160" class="pd" stroke-width="9"/>
+  <line x1="50" y1="460" x2="130" y2="460" class="nd" stroke-width="9"/>
+  <line x1="50" y1="280" x2="130" y2="280" class="well"/>
+  <line x1="90" y1="135" x2="90" y2="485" class="poly"/>
+  <text x="70" y="128" class="t" fill="#d62828" font-size="12">CLK</text>
+  <text x="52" y="164" class="t" font-size="12" font-weight="700">?</text>
+  <text x="108" y="164" class="t" font-size="12" font-weight="700">?</text>
+  <text x="52" y="464" class="t" font-size="12" font-weight="700">?</text>
+  <text x="108" y="464" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="58" y1="160" x2="58" y2="100" class="m1"/>
+  <line x1="58" y1="460" x2="58" y2="520" class="m1"/>
+  <!-- CLKB on M2 horizontal spine -->
+  <text x="112" y="164" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="120" y1="160" x2="120" y2="310" class="m1"/>
+  <line x1="120" y1="460" x2="120" y2="310" class="m1"/>
+  <line x1="120" y1="310" x2="180" y2="310" class="m2"/>
+  <text x="125" y="302" class="t pin2" font-size="12">CLKB</text>
+
+  <line x1="175" y1="95" x2="175" y2="530" class="sep"/>
+
+  <!-- CLK/CLKB M2 trunks across right block -->
+  <line x1="180" y1="310" x2="960" y2="310" class="m2"/>
+  <line x1="180" y1="330" x2="960" y2="330" class="m2"/>
+  <text x="900" y="304" class="t pin2" font-size="11">CLKB</text>
+  <text x="910" y="348" class="t pin2" font-size="11">CLK</text>
+  <!-- CLK also from left poly via M2 -->
+  <line x1="90" y1="135" x2="90" y2="100" class="poly"/>
+  <text x="84" y="100" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="90" y1="100" x2="180" y2="100" class="m1"/>
+  <line x1="180" y1="100" x2="180" y2="330" class="m2"/>
+
+  <!-- ========== UPPER ROW: INV + NOR ========== -->
+  <!-- Master INV+NOR diffusion -->
+  <line x1="210" y1="150" x2="480" y2="150" class="pd"/>
+  <line x1="210" y1="250" x2="480" y2="250" class="nd"/>
+  <line x1="210" y1="200" x2="480" y2="200" class="well"/>
+
+  <!-- Master INV poly -->
+  <line x1="260" y1="130" x2="260" y2="270" class="poly"/>
+  <text x="246" y="124" class="t" fill="#d62828" font-size="11">INV</text>
+  <text x="278" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <text x="278" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="284" y1="150" x2="284" y2="250" class="m1"/>
+
+  <!-- Master NOR two polys -->
+  <line x1="340" y1="130" x2="340" y2="270" class="poly"/>
+  <line x1="370" y1="130" x2="370" y2="270" class="poly"/>
+  <text x="342" y="124" class="t" fill="#d62828" font-size="11">NOR</text>
+  <line x1="340" y1="130" x2="340" y2="115" class="poly"/>
+  <line x1="310" y1="115" x2="340" y2="115" class="m1"/>
+  <text x="292" y="112" class="t pin" font-size="12">R</text>
+  <!-- QM -->
+  <text x="392" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <text x="392" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="398" y1="150" x2="398" y2="200" class="m1"/>
+  <line x1="398" y1="250" x2="398" y2="200" class="m1"/>
+  <line x1="398" y1="200" x2="450" y2="200" class="m1"/>
+  <text x="410" y="192" class="t pin" font-size="12">QM</text>
+
+  <!-- taps -->
+  <text x="218" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="224" y1="150" x2="224" y2="100" class="m1"/>
+  <text x="218" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="224" y1="250" x2="224" y2="100" class="m1" opacity="0"/>
+  <!-- n tap to local VSS stub via M1 down later - connect to vertical M1 later from TG row; for upper use short to a dropped VSS via M2? keep simple: tap to top/bottom through vertical M1 spanning full cell later -->
+  <line x1="224" y1="250" x2="224" y2="290" class="m1"/>
+  <text x="460" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="466" y1="150" x2="466" y2="100" class="m1"/>
+  <text x="460" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="466" y1="250" x2="466" y2="290" class="m1"/>
+
+  <!-- Slave INV+NOR -->
+  <line x1="520" y1="150" x2="900" y2="150" class="pd"/>
+  <line x1="520" y1="250" x2="900" y2="250" class="nd"/>
+  <line x1="520" y1="200" x2="900" y2="200" class="well"/>
+
+  <line x1="580" y1="130" x2="580" y2="270" class="poly"/>
+  <text x="566" y="124" class="t" fill="#d62828" font-size="11">INV</text>
+  <text x="598" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <text x="598" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="604" y1="150" x2="604" y2="250" class="m1"/>
+  <line x1="604" y1="200" x2="650" y2="200" class="m1"/>
+  <text x="612" y="192" class="t pin" font-size="12">QB</text>
+
+  <line x1="700" y1="130" x2="700" y2="270" class="poly"/>
+  <line x1="730" y1="130" x2="730" y2="270" class="poly"/>
+  <text x="702" y="124" class="t" fill="#d62828" font-size="11">NOR</text>
+  <line x1="700" y1="130" x2="700" y2="115" class="poly"/>
+  <line x1="670" y1="115" x2="700" y2="115" class="m1"/>
+  <text x="652" y="112" class="t pin" font-size="12">R</text>
+
+  <text x="752" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <text x="752" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="758" y1="150" x2="758" y2="200" class="m1"/>
+  <line x1="758" y1="250" x2="758" y2="200" class="m1"/>
+  <line x1="758" y1="200" x2="860" y2="200" class="m1"/>
+  <text x="820" y="192" class="t pin">Q</text>
+
+  <text x="530" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="536" y1="150" x2="536" y2="100" class="m1"/>
+  <text x="530" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="536" y1="250" x2="536" y2="290" class="m1"/>
+  <text x="880" y="154" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="886" y1="150" x2="886" y2="100" class="m1"/>
+  <text x="880" y="254" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="886" y1="250" x2="886" y2="290" class="m1"/>
+
+  <!-- vertical M1 between upper and lower for local nodes -->
+  <!-- INV in from TG: master -->
+  <line x1="260" y1="270" x2="260" y2="360" class="m1"/>
+  <text x="254" y="360" class="t" font-size="12" font-weight="700">?</text>
+  <!-- NOR out QM down to fb TG / already have QM m1 -->
+  <line x1="450" y1="200" x2="450" y2="360" class="m1"/>
+  <!-- slave INV in -->
+  <line x1="580" y1="270" x2="580" y2="360" class="m1"/>
+  <text x="574" y="360" class="t" font-size="12" font-weight="700">?</text>
+  <!-- Q down optional -->
+  <line x1="860" y1="200" x2="860" y2="360" class="m1"/>
+
+  <!-- ========== LOWER ROW: TGs ========== -->
+  <!-- Master TGs: input TG + feedback TG -->
+  <line x1="210" y1="390" x2="480" y2="390" class="pd"/>
+  <line x1="210" y1="480" x2="480" y2="480" class="nd"/>
+  <line x1="210" y1="435" x2="480" y2="435" class="well"/>
+
+  <!-- D -->
+  <text x="188" y="448" class="t pin">D</text>
+  <line x1="205" y1="445" x2="240" y2="445" class="m1"/>
+  <line x1="240" y1="445" x2="240" y2="480" class="m1"/>
+  <text x="234" y="484" class="t" font-size="12" font-weight="700">?</text>
+
+  <!-- TG_in poly (complementary clocks on one stick pair shown as one poly for stick simplicity, labeled) -->
+  <line x1="280" y1="370" x2="280" y2="500" class="poly"/>
+  <text x="262" y="364" class="t" fill="#d62828" font-size="11">TG</text>
+  <line x1="280" y1="330" x2="280" y2="370" class="m2"/>
+  <line x1="280" y1="310" x2="280" y2="330" class="m2"/>
+
+  <!-- node to upper INV -->
+  <text x="254" y="394" class="t" font-size="12" font-weight="700">?</text>
+  <text x="254" y="484" class="t" font-size="12" font-weight="700">?</text>
+  <!-- already connected via x=260 m1 -->
+
+  <!-- TG_fb -->
+  <line x1="420" y1="370" x2="420" y2="500" class="poly"/>
+  <text x="402" y="364" class="t" fill="#d62828" font-size="11">TG</text>
+  <text x="410" y="545" class="t sm">fb</text>
+  <line x1="420" y1="330" x2="420" y2="370" class="m2"/>
+  <!-- QM to fb TG -->
+  <line x1="450" y1="360" x2="420" y2="360" class="m1"/>
+  <text x="414" y="364" class="t" font-size="12" font-weight="700">?</text>
+  <text x="414" y="484" class="t" font-size="12" font-weight="700">?</text>
+
+  <!-- taps lower master -->
+  <text x="218" y="394" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="224" y1="390" x2="224" y2="100" class="m1"/>
+  <text x="218" y="484" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="224" y1="480" x2="224" y2="520" class="m1"/>
+  <text x="460" y="394" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="466" y1="390" x2="466" y2="100" class="m1"/>
+  <text x="460" y="484" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="466" y1="480" x2="466" y2="520" class="m1"/>
+
+  <!-- Slave TGs -->
+  <line x1="520" y1="390" x2="900" y2="390" class="pd"/>
+  <line x1="520" y1="480" x2="900" y2="480" class="nd"/>
+  <line x1="520" y1="435" x2="900" y2="435" class="well"/>
+
+  <!-- QM into slave TG -->
+  <line x1="450" y1="360" x2="560" y2="360" class="m1"/>
+  <line x1="560" y1="360" x2="560" y2="480" class="m1"/>
+  <text x="554" y="484" class="t" font-size="12" font-weight="700">?</text>
+
+  <line x1="600" y1="370" x2="600" y2="500" class="poly"/>
+  <text x="582" y="364" class="t" fill="#d62828" font-size="11">TG</text>
+  <line x1="600" y1="330" x2="600" y2="370" class="m2"/>
+
+  <!-- to slave INV -->
+  <text x="574" y="394" class="t" font-size="12" font-weight="700">?</text>
+  <!-- x=580 already -->
+
+  <!-- TG_fb slave -->
+  <line x1="820" y1="370" x2="820" y2="500" class="poly"/>
+  <text x="802" y="364" class="t" fill="#d62828" font-size="11">TG</text>
+  <text x="812" y="545" class="t sm">fb</text>
+  <line x1="820" y1="330" x2="820" y2="370" class="m2"/>
+  <line x1="860" y1="360" x2="820" y2="360" class="m1"/>
+  <text x="814" y="364" class="t" font-size="12" font-weight="700">?</text>
+  <text x="814" y="484" class="t" font-size="12" font-weight="700">?</text>
+
+  <text x="530" y="394" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="536" y1="390" x2="536" y2="100" class="m1"/>
+  <text x="530" y="484" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="536" y1="480" x2="536" y2="520" class="m1"/>
+  <text x="880" y="394" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="886" y1="390" x2="886" y2="100" class="m1"/>
+  <text x="880" y="484" class="t" font-size="12" font-weight="700">?</text>
+  <line x1="886" y1="480" x2="886" y2="520" class="m1"/>
+
+  <text x="20" y="552" class="t sm">Left: CLK inverter. Right upper: Master/Slave INV+NOR. Right lower: TGs. M1 = power &amp; local data; M2 = CLK/CLKB trunks.</text>
+</svg>

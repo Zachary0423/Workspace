@@ -1,0 +1,12 @@
+---
+description: Stay in WorkSpace; never switch root; no edits outside without permission
+alwaysApply: true
+---
+
+# Stay in WorkSpace
+
+- Always keep the agent root at `C:\Users\zzy\Desktop\WorkSpace`.
+- Never call `move_agent_to_root` or otherwise switch/change the workspace root.
+- Scripts, temp files, extracts, and other agent work products belong under WorkSpace (e.g. `_agent_work/`), not inside course folders on the Desktop.
+- Files outside WorkSpace may be **read** as needed. Do **not** create, modify, move, or delete them unless the user explicitly asks for that specific change.
+- When files live elsewhere (e.g. Desktop course folders), use absolute paths; do not relocate the workspace.
